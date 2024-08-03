@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "ethnocentric";
+  src: url("./ethnocentric-rg.otf") format("opentype");
+}
+.ethnocentric-font {
+  font-family: ethnocentric;
+}
