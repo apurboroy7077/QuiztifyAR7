@@ -36,8 +36,8 @@ const DropDownMenu = (props: propsType) => {
     >
       <ul>
         <DropDownListType1 name="Home" link="/" />
-        <DropDownListType1 name="Home" link="/" />
-        <DropDownListType1 name="Home" link="/" />
+        <DropDownListType1 name="Game" link="/game" />
+        <DropDownListType1 name="Test" link="/test" />
       </ul>
     </div>
   );

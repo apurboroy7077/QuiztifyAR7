@@ -4,7 +4,7 @@ import SmallScreenHeader from "./SmallScreenHeader";
 
 const HeaderAR7 = () => {
   const screenSizeAR7 = useBasic((state) => state.screenSize);
-  console.log(screenSizeAR7);
+
   return (
     <>
       {(screenSizeAR7 === "SMALL_SCREEN" ||

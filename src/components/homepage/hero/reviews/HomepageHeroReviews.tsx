@@ -26,7 +26,9 @@ const HomepageHeroReviews = () => {
       <div>
         <div className="flex justify-center mt-5 lg:mt-0">
           {Array.from({ length: 5 }).map(() => {
-            return <i className="fa-solid fa-star text-[gold]"></i>;
+            return (
+              <i key={ar7Id()} className="fa-solid fa-star text-[gold]"></i>
+            );
           })}
         </div>
         <div className="text-white text-center mt-5 lg:mt-2">

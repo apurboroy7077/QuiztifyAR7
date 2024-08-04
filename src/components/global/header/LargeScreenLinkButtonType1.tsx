@@ -5,7 +5,7 @@ type propsType = {
   link: string;
 };
 type activeStatusType = "ACTIVE" | "NOT_ACTIVE";
-const DropDownListType1 = (props: propsType) => {
+const LargeScreenLinkButtonType1 = (props: propsType) => {
   const { name, link } = props;
   const [activeStatus, setActiveStatus] = useState(
     "NOT_ACTIVE" as activeStatusType
@@ -20,19 +20,17 @@ const DropDownListType1 = (props: propsType) => {
   useEffect(() => {
     checkActiveStatusFunction();
   }, []);
-
   return (
-    <li>
-      <Link
-        to={link}
-        className={`py-3 px-4 block text-[white] hover:bg-[#505050] hover:text-[white] ${
+    <Link to={link}>
+      <li
+        className={`text-base text-white font-medium hover:bg-[#505050] px-7 py-2 rounded ${
           activeStatus === "ACTIVE" ? "bg-[#505050]" : ""
         }`}
       >
         {name}
-      </Link>
-    </li>
+      </li>
+    </Link>
   );
 };
 
-export default DropDownListType1;
+export default LargeScreenLinkButtonType1;
