@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const HomepageHeroButtons = () => {
   return (
     <div className="mt-10 ">
@@ -8,10 +10,12 @@ const HomepageHeroButtons = () => {
         </button>
       </div>
       <div className="mt-5">
-        <button className="w-full  py-5 text-[white] rounded-full border-[3px] border-[white] active:scale-[0.95]">
-          <i className="fa-solid fa-user text-xl mr-2"></i>
-          <span className="font-bold text-lg">Play Solo</span>
-        </button>
+        <Link to={"/game"}>
+          <button className="w-full  py-5 text-[white] rounded-full border-[3px] border-[white] active:scale-[0.95]">
+            <i className="fa-solid fa-user text-xl mr-2"></i>
+            <span className="font-bold text-lg">Play Solo</span>
+          </button>
+        </Link>
       </div>
     </div>
   );
