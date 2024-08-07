@@ -1,30 +1,26 @@
 import SidebarQuestionsLargeScreen from "../sidebar-questions-large-screen/SidebarQuestionsLargeScreen";
 import QuestionsAndOptionsOfAnswers from "../question-and-options-of-answer/QuestionsAndOptionsOfAnswers";
-import useChoosenQuestions from "../../../hooks/zustand/useChoosenQuestions";
+
 import { useEffect } from "react";
+import useQuestions from "../../../hooks/zustand/useQuestion";
 
 const GamepageMainSection = () => {
-  const choosenQuestions = useChoosenQuestions(
-    (state) => state.choosenQuestionsAndAnswersData
-  );
-  const setChoosenQuestions = useChoosenQuestions(
-    (state) => state.setChoosenQuestions
-  );
+  // NEW ONES--------------------------------------------------
 
-  const setCurrentQuestion = useChoosenQuestions(
-    (state) => state.setCurrentQuestion
+  const setCurrentQuestionsData = useQuestions(
+    (state) => state.setCurrentQuestionsData
   );
-
   useEffect(() => {
-    setChoosenQuestions();
-    setCurrentQuestion();
+    // setChoosenQuestions();
+    // setCurrentQuestion();
+    setCurrentQuestionsData();
   }, []);
   return (
     <main>
       <section>
         <div className="bg-[#594ECA] px-5 py-16 lg:flex lg:justify-around">
           <div className="hidden lg:block lg:w-[25%]">
-            <SidebarQuestionsLargeScreen data={choosenQuestions} />
+            <SidebarQuestionsLargeScreen />
           </div>
           <div className="lg:w-[65%]">
             <QuestionsAndOptionsOfAnswers />

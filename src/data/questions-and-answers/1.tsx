@@ -1,4 +1,4 @@
-const questionsAndAnswers1 = [
+const questionsAndAnswers = [
   {
     question: "Who was the president of America?",
     options: [
@@ -206,6 +206,6 @@ const questionsAndAnswers1 = [
   },
 ];
 
-export default questionsAndAnswers1;
-type questionsAndAnwersType = typeof questionsAndAnswers1;
+export default questionsAndAnswers;
+type questionsAndAnwersType = typeof questionsAndAnswers;
 export type { questionsAndAnwersType };

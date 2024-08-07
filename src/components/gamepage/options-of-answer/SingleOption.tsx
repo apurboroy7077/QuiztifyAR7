@@ -1,53 +1,56 @@
 import { useState } from "react";
-import useChoosenQuestions from "../../../hooks/zustand/useChoosenQuestions";
-
+import useQuestions from "../../../hooks/zustand/useQuestion";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 type propsType = {
   option: string;
 };
+const mySwal = withReactContent(Swal);
 type answerOfUserStatus = "NOT_ANSWERED" | "CORRECT_ANSWER" | "WRONG_ANSWER";
 const SingleOption = (props: propsType) => {
+  const { option } = props;
   const [answerOfUser, setAnswerOfUser] = useState(
     "NOT_ANSWERED" as answerOfUserStatus
   );
-  const { option } = props;
-  const currentQuestionData = useChoosenQuestions(
-    (state) => state.currentQuestion
+  const currentQuestionData = useQuestions(
+    (state) => state.currentSingleQuestion
   );
-  const moveToNextQuestion = useChoosenQuestions(
-    (state) => state.setCurrentQuestion
-  );
-  const isAnswerSubmitted = useChoosenQuestions(
-    (state) => state.isAnswerSubmitted
-  );
-  const setIsAnswerSubmitted = useChoosenQuestions(
-    (state) => state.setIsAnswerSubmitted
-  );
+  const moveToNextQuestion = useQuestions((state) => state.moveToNextQuestion);
+  const isQuestionOver = useQuestions((state) => state.questionOverStatus);
+  const popupMessage = () => {
+    mySwal.fire({
+      title: "Congratulations!",
+      text: "You Completed all the Questions!",
+      icon: "success",
+    });
+  };
   const submitAnswer = () => {
-    setIsAnswerSubmitted("SUBMITTED");
-    if (option === currentQuestionData.correctAnswer) {
+    if (option === currentQuestionData?.correctAnswer) {
       setAnswerOfUser("CORRECT_ANSWER");
     } else {
       setAnswerOfUser("WRONG_ANSWER");
     }
+
     setTimeout(() => {
-      setIsAnswerSubmitted("NOT_SUBMITTED");
       moveToNextQuestion();
     }, 1000);
   };
-
+  if (isQuestionOver) {
+    popupMessage();
+  }
   return (
     <li>
       <div
         onClick={submitAnswer}
-        className={`flex justify-between items-center bg-[#594ECA] px-5 py-3 lg:py-5 rounded lg:rounded-xl border-[3px] border-[transparent]  cursor-pointer active:scale-[0.98]
-        ${answerOfUser === "NOT_ANSWERED" ? "hover:border-[white]" : ""}
+        className={`flex justify-between items-center bg-[#594ECA] px-5 py-3 lg:py-5 rounded lg:rounded-xl border-[3px]   cursor-pointer active:scale-[0.98]
+        ${
+          answerOfUser === "NOT_ANSWERED"
+            ? "hover:border-[white] border-[transparent]"
+            : ""
+        }
          ${answerOfUser === "CORRECT_ANSWER" ? "border-[lawngreen]" : ""}
          ${answerOfUser === "WRONG_ANSWER" ? "border-[red]" : ""}
-         ${
-           answerOfUser === "WRONG_ANSWER" && isAnswerSubmitted === "SUBMITTED"
-             ? "border-[red]"
-             : ""
-         }
+        
          `}
       >
         <div className="text-[white] lg:text-xl">{option}</div>
