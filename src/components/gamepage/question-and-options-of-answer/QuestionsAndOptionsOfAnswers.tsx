@@ -1,8 +1,8 @@
-import useQuestions from "../../../hooks/zustand/useQuestion";
+import useQuestions2 from "../../../hooks/zustand/useQuestions2";
 import OptionsOfAnswer from "../options-of-answer/OptionsOfAnswer";
 
 const QuestionsAndOptionsOfAnswers = () => {
-  const currentSingleQuestion = useQuestions(
+  const currentSingleQuestion = useQuestions2(
     (state) => state.currentSingleQuestion
   );
   return (

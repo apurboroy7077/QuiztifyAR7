@@ -1,9 +1,9 @@
-import useQuestions from "../../../hooks/zustand/useQuestion";
+import useQuestions2 from "../../../hooks/zustand/useQuestions2";
 import ar7Id from "../../../utils/unique-id/ar7Id";
 import SingleOption from "./SingleOption";
 
 const OptionsOfAnswer = () => {
-  const currentSingleQuestion = useQuestions(
+  const currentSingleQuestion = useQuestions2(
     (state) => state.currentSingleQuestion
   );
   return (

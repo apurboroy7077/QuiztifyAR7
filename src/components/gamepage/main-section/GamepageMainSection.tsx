@@ -2,18 +2,16 @@ import SidebarQuestionsLargeScreen from "../sidebar-questions-large-screen/Sideb
 import QuestionsAndOptionsOfAnswers from "../question-and-options-of-answer/QuestionsAndOptionsOfAnswers";
 
 import { useEffect } from "react";
-import useQuestions from "../../../hooks/zustand/useQuestion";
+
+import useQuestions2 from "../../../hooks/zustand/useQuestions2";
 
 const GamepageMainSection = () => {
   // NEW ONES--------------------------------------------------
-
-  const setCurrentQuestionsData = useQuestions(
-    (state) => state.setCurrentQuestionsData
-  );
+  const setQuestions = useQuestions2((state) => state.setQuestions);
   useEffect(() => {
     // setChoosenQuestions();
     // setCurrentQuestion();
-    setCurrentQuestionsData();
+    setQuestions();
   }, []);
   return (
     <main>

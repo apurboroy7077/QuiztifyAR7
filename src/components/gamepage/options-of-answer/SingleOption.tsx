@@ -1,7 +1,8 @@
-import { useState } from "react";
-import useQuestions from "../../../hooks/zustand/useQuestion";
+import { useEffect, useState } from "react";
+
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import useQuestions2 from "../../../hooks/zustand/useQuestions2";
 type propsType = {
   option: string;
 };
@@ -12,12 +13,12 @@ const SingleOption = (props: propsType) => {
   const [answerOfUser, setAnswerOfUser] = useState(
     "NOT_ANSWERED" as answerOfUserStatus
   );
-  const currentQuestionData = useQuestions(
+  const currentQuestionData = useQuestions2(
     (state) => state.currentSingleQuestion
   );
-  const moveToNextQuestion = useQuestions((state) => state.moveToNextQuestion);
-  const isQuestionOver = useQuestions((state) => state.questionOverStatus);
-  const popupMessage = () => {
+  const moveToNextQuestion = useQuestions2((state) => state.moveToNextQuestion);
+
+  const popupQuestionOverMessage = () => {
     mySwal.fire({
       title: "Congratulations!",
       text: "You Completed all the Questions!",
@@ -30,14 +31,17 @@ const SingleOption = (props: propsType) => {
     } else {
       setAnswerOfUser("WRONG_ANSWER");
     }
-
     setTimeout(() => {
       moveToNextQuestion();
     }, 1000);
   };
-  if (isQuestionOver) {
-    popupMessage();
-  }
+  const questionOverStatus = useQuestions2((state) => state.questionOverStatus);
+  useEffect(() => {
+    if (questionOverStatus === "QUESTION_OVER") {
+      popupQuestionOverMessage();
+    }
+  }, [questionOverStatus]);
+
   return (
     <li>
       <div

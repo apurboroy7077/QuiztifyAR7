@@ -1,6 +1,5 @@
-import useQuestions, {
-  currentSingleQuestionType,
-} from "../../../hooks/zustand/useQuestion";
+import { currentSingleQuestionType } from "../../../hooks/zustand/useQuestion";
+import useQuestions2 from "../../../hooks/zustand/useQuestions2";
 
 type propsType = {
   data: currentSingleQuestionType;
@@ -8,7 +7,7 @@ type propsType = {
 
 const SidebarQuestionSingleList = (props: propsType) => {
   const { data } = props;
-  const currentQuestion = useQuestions((state) => state.currentSingleQuestion);
+  const currentQuestion = useQuestions2((state) => state.currentSingleQuestion);
   return (
     <li>
       <div
