@@ -25,20 +25,32 @@ const SingleOption = (props: propsType) => {
       icon: "success",
     });
   };
+  const currentAnswerSubmitStatus = useQuestions2(
+    (state) => state.currentAnswerSubmitStatus
+  );
+  const setCurrentAnswerSubmitStatus = useQuestions2(
+    (state) => state.setCurrentAnswerSubmitStatus
+  );
   const submitAnswer = () => {
+    setCurrentAnswerSubmitStatus("SUBMITTED");
     if (option === currentQuestionData?.correctAnswer) {
       setAnswerOfUser("CORRECT_ANSWER");
     } else {
       setAnswerOfUser("WRONG_ANSWER");
     }
     setTimeout(() => {
+      setCurrentAnswerSubmitStatus("NOT_SUBMITTED");
       moveToNextQuestion();
     }, 1000);
   };
   const questionOverStatus = useQuestions2((state) => state.questionOverStatus);
+  const resetState = useQuestions2((state) => state.reset);
+  const setQuestions = useQuestions2((state) => state.setQuestions);
   useEffect(() => {
     if (questionOverStatus === "QUESTION_OVER") {
       popupQuestionOverMessage();
+      resetState();
+      setQuestions();
     }
   }, [questionOverStatus]);
 
@@ -46,22 +58,37 @@ const SingleOption = (props: propsType) => {
     <li>
       <div
         onClick={submitAnswer}
-        className={`flex justify-between items-center bg-[#594ECA] px-5 py-3 lg:py-5 rounded lg:rounded-xl border-[3px]   cursor-pointer active:scale-[0.98]
+        className={`flex justify-between items-center bg-[#594ECA] px-5 py-3 lg:py-5 rounded lg:rounded-xl  cursor-pointer active:scale-[0.98] 
         ${
-          answerOfUser === "NOT_ANSWERED"
-            ? "hover:border-[white] border-[transparent]"
+          answerOfUser === "NOT_ANSWERED" &&
+          currentAnswerSubmitStatus === "NOT_SUBMITTED"
+            ? "hover:border-[white]  border-[3px]  border-[transparent]"
             : ""
         }
-         ${answerOfUser === "CORRECT_ANSWER" ? "border-[lawngreen]" : ""}
-         ${answerOfUser === "WRONG_ANSWER" ? "border-[red]" : ""}
+       
+         ${
+           answerOfUser === "CORRECT_ANSWER"
+             ? "  border-[3px] hover:border-[lawngreen]  border-[lawngreen]"
+             : ""
+         }
+        
+         ${answerOfUser === "WRONG_ANSWER" ? " border-[3px]  border-[red]" : ""}
+         ${
+           answerOfUser === "NOT_ANSWERED" &&
+           currentAnswerSubmitStatus === "SUBMITTED" &&
+           option === currentQuestionData?.correctAnswer
+             ? "hover:border-[lawngreen]  border-[3px] border-[lawngreen]"
+             : ""
+         }
         
          `}
       >
         <div className="text-[white] lg:text-xl">{option}</div>
         <div>
-          {answerOfUser === "NOT_ANSWERED" && (
-            <div className="bg-[#7062F4] w-[1.3rem] lg:w-[1.5rem] h-[1.3rem] lg:h-[1.5rem] rounded-full flex justify-center items-center"></div>
-          )}
+          {answerOfUser === "NOT_ANSWERED" &&
+            currentAnswerSubmitStatus === "NOT_SUBMITTED" && (
+              <div className="bg-[#7062F4] w-[1.3rem] lg:w-[1.5rem] h-[1.3rem] lg:h-[1.5rem] rounded-full flex justify-center items-center"></div>
+            )}
           {answerOfUser === "CORRECT_ANSWER" && (
             <div className="bg-[lawngreen] w-[1.3rem] lg:w-[1.5rem] h-[1.3rem] lg:h-[1.5rem] rounded-full flex justify-center items-center">
               <i className="fa-solid fa-check text-[white] text-xs lg:text-sm"></i>
@@ -72,6 +99,13 @@ const SingleOption = (props: propsType) => {
               <i className="fa-solid fa-xmark text-[white] text-xs lg:text-sm"></i>
             </div>
           )}
+          {answerOfUser === "NOT_ANSWERED" &&
+            currentAnswerSubmitStatus === "SUBMITTED" &&
+            option === currentQuestionData?.correctAnswer && (
+              <div className="bg-[lawngreen] w-[1.3rem] lg:w-[1.5rem] h-[1.3rem] lg:h-[1.5rem] rounded-full flex justify-center items-center">
+                <i className="fa-solid fa-check text-[white] text-xs lg:text-sm"></i>
+              </div>
+            )}
         </div>
       </div>
     </li>

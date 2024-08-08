@@ -11,7 +11,16 @@ const QuestionsAndOptionsOfAnswers = () => {
         {currentSingleQuestion?.question}
       </div>
       <div className="mt-5 lg:mt-10 flex items-center justify-center">
-        <img src="/images/1/carodpati-1.avif" alt="" className="w-[70%]" />
+        {currentSingleQuestion?.imageSrc && (
+          <img
+            src={currentSingleQuestion.imageSrc}
+            alt=""
+            className="w-[70%]"
+          />
+        )}
+        {!currentSingleQuestion?.imageSrc && (
+          <img src="/images/1/carodpati-1.avif" alt="" className="w-[70%]" />
+        )}
       </div>
       <OptionsOfAnswer />
     </div>
