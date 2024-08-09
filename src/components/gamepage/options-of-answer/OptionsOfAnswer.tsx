@@ -1,4 +1,4 @@
-import useQuestions2 from "../../../hooks/zustand/useQuestions2";
+import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
 import ar7Id from "../../../utils/unique-id/ar7Id";
 import SingleOption from "./SingleOption";
 

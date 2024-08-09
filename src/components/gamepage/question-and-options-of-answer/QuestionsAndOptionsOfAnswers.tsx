@@ -1,4 +1,4 @@
-import useQuestions2 from "../../../hooks/zustand/useQuestions2";
+import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
 import OptionsOfAnswer from "../options-of-answer/OptionsOfAnswer";
 
 const QuestionsAndOptionsOfAnswers = () => {
@@ -10,16 +10,20 @@ const QuestionsAndOptionsOfAnswers = () => {
       <div className="bg-[#594ECA] px-3 py-3 lg:py-6 rounded-lg text-[white] text-center font-medium lg:text-3xl">
         {currentSingleQuestion?.question}
       </div>
-      <div className="mt-5 lg:mt-10 flex items-center justify-center">
+      <div className="mt-5 lg:mt-10 flex items-center justify-center h-[9rem] md:h-[15rem] px-5">
         {currentSingleQuestion?.imageSrc && (
           <img
             src={currentSingleQuestion.imageSrc}
             alt=""
-            className="w-[70%]"
+            className=" max-h-full object-cover object-center"
           />
         )}
         {!currentSingleQuestion?.imageSrc && (
-          <img src="/images/1/carodpati-1.avif" alt="" className="w-[70%]" />
+          <img
+            src="/images/1/carodpati-1.avif"
+            alt=""
+            className=" max-h-full object-cover object-center"
+          />
         )}
       </div>
       <OptionsOfAnswer />

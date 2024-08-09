@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import useBasic from "../../hooks/zustand/useBasic";
+import useBasic from "../../hooks/solo-gameplay/useBasic";
 
 const StartupFunctions = () => {
   const setScreenSize = useBasic((state) => state.setScreenSize);

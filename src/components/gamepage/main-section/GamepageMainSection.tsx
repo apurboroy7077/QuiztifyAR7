@@ -3,7 +3,8 @@ import QuestionsAndOptionsOfAnswers from "../question-and-options-of-answer/Ques
 
 import { useEffect } from "react";
 
-import useQuestions2 from "../../../hooks/zustand/useQuestions2";
+import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
+import SoloGamePlayScoreboard from "../score/SoloGamePlayScoreboard";
 
 const GamepageMainSection = () => {
   // NEW ONES--------------------------------------------------
@@ -16,11 +17,12 @@ const GamepageMainSection = () => {
   return (
     <main>
       <section>
-        <div className="bg-[#594ECA] px-5 py-16 lg:flex lg:justify-around">
+        <div className="bg-[#594ECA] px-5 py-7 lg:py-16 lg:flex lg:justify-around">
           <div className="hidden lg:block lg:w-[25%]">
             <SidebarQuestionsLargeScreen />
           </div>
           <div className="lg:w-[65%]">
+            <SoloGamePlayScoreboard />
             <QuestionsAndOptionsOfAnswers />
           </div>
         </div>

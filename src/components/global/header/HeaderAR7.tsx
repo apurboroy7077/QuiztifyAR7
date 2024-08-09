@@ -1,4 +1,4 @@
-import useBasic from "../../../hooks/zustand/useBasic";
+import useBasic from "../../../hooks/solo-gameplay/useBasic";
 import LargeScreenHeader from "./LargeScreenHeader";
 import SmallScreenHeader from "./SmallScreenHeader";
 

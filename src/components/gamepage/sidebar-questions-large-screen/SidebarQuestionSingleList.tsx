@@ -1,5 +1,5 @@
-import { currentSingleQuestionType } from "../../../hooks/zustand/useQuestion";
-import useQuestions2 from "../../../hooks/zustand/useQuestions2";
+import { currentSingleQuestionType } from "../../../hooks/solo-gameplay/useQuestion";
+import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
 
 type propsType = {
   data: currentSingleQuestionType;

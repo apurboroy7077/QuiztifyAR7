@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import useQuestions2 from "../../../hooks/zustand/useQuestions2";
+import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
+import useScoreInSoloGameplay from "../../../hooks/solo-gameplay/useScore/useScore";
 type propsType = {
   option: string;
 };
@@ -17,11 +18,11 @@ const SingleOption = (props: propsType) => {
     (state) => state.currentSingleQuestion
   );
   const moveToNextQuestion = useQuestions2((state) => state.moveToNextQuestion);
-
+  const currentScore = useScoreInSoloGameplay((state) => state.currentScore);
   const popupQuestionOverMessage = () => {
     mySwal.fire({
       title: "Congratulations!",
-      text: "You Completed all the Questions!",
+      text: `Your Score is ${currentScore}!`,
       icon: "success",
     });
   };
@@ -31,10 +32,12 @@ const SingleOption = (props: propsType) => {
   const setCurrentAnswerSubmitStatus = useQuestions2(
     (state) => state.setCurrentAnswerSubmitStatus
   );
+  const increaseScore = useScoreInSoloGameplay((state) => state.increaseScore);
   const submitAnswer = () => {
     setCurrentAnswerSubmitStatus("SUBMITTED");
     if (option === currentQuestionData?.correctAnswer) {
       setAnswerOfUser("CORRECT_ANSWER");
+      increaseScore();
     } else {
       setAnswerOfUser("WRONG_ANSWER");
     }
@@ -58,28 +61,23 @@ const SingleOption = (props: propsType) => {
     <li>
       <div
         onClick={submitAnswer}
-        className={`flex justify-between items-center bg-[#594ECA] px-5 py-3 lg:py-5 rounded lg:rounded-xl  cursor-pointer active:scale-[0.98] 
+        className={`flex justify-between items-center bg-[#594ECA] px-5 py-3 lg:py-5 rounded lg:rounded-xl  cursor-pointer active:scale-[0.98] border-[3px] border-[#594ECA] 
         ${
           answerOfUser === "NOT_ANSWERED" &&
           currentAnswerSubmitStatus === "NOT_SUBMITTED"
-            ? "hover:border-[white]  border-[3px]  border-[transparent]"
+            ? "hover:border-[white]"
             : ""
         }
-       
-         ${
-           answerOfUser === "CORRECT_ANSWER"
-             ? "  border-[3px] hover:border-[lawngreen]  border-[lawngreen]"
-             : ""
-         }
+       ${answerOfUser === "WRONG_ANSWER" ? "border-[#ff0000]" : ""}
+       ${answerOfUser === "CORRECT_ANSWER" ? "border-[#7cfc00]" : ""}
+       ${
+         answerOfUser === "NOT_ANSWERED" &&
+         currentAnswerSubmitStatus === "SUBMITTED" &&
+         currentQuestionData?.correctAnswer === option
+           ? "border-[#7cfc00]"
+           : ""
+       }
         
-         ${answerOfUser === "WRONG_ANSWER" ? " border-[3px]  border-[red]" : ""}
-         ${
-           answerOfUser === "NOT_ANSWERED" &&
-           currentAnswerSubmitStatus === "SUBMITTED" &&
-           option === currentQuestionData?.correctAnswer
-             ? "hover:border-[lawngreen]  border-[3px] border-[lawngreen]"
-             : ""
-         }
         
          `}
       >
@@ -87,6 +85,11 @@ const SingleOption = (props: propsType) => {
         <div>
           {answerOfUser === "NOT_ANSWERED" &&
             currentAnswerSubmitStatus === "NOT_SUBMITTED" && (
+              <div className="bg-[#7062F4] w-[1.3rem] lg:w-[1.5rem] h-[1.3rem] lg:h-[1.5rem] rounded-full flex justify-center items-center"></div>
+            )}
+          {answerOfUser === "NOT_ANSWERED" &&
+            currentAnswerSubmitStatus === "SUBMITTED" &&
+            option !== currentQuestionData?.correctAnswer && (
               <div className="bg-[#7062F4] w-[1.3rem] lg:w-[1.5rem] h-[1.3rem] lg:h-[1.5rem] rounded-full flex justify-center items-center"></div>
             )}
           {answerOfUser === "CORRECT_ANSWER" && (

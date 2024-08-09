@@ -3,7 +3,7 @@ import HomepageHeroTitle2 from "../title-2/HomepageHeroTitle2";
 import HomepageHeroCarousel from "../carousel/HomepageHeroCarousel";
 import HomepageHeroButtons from "../buttons/HomepageHeroButtons";
 import HomepageHeroReviews from "../reviews/HomepageHeroReviews";
-import useBasic from "../../../../hooks/zustand/useBasic";
+import useBasic from "../../../../hooks/solo-gameplay/useBasic";
 
 const HomepageHeroSection = () => {
   const screenSize = useBasic((state) => state.screenSize);
