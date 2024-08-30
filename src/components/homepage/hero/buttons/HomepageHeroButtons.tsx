@@ -4,10 +4,12 @@ const HomepageHeroButtons = () => {
   return (
     <div className="mt-10 ">
       <div>
-        <button className="w-full bg-[#FFA41C] py-5 text-[white] rounded-full active:scale-[0.95]">
-          <i className="fa-solid fa-users text-xl mr-2"></i>
-          <span className="font-bold text-lg">Setup Multiplayer</span>
-        </button>
+        <Link to={"/setup-multiplayer"}>
+          <button className="w-full bg-[#FFA41C] py-5 text-[white] rounded-full active:scale-[0.95]">
+            <i className="fa-solid fa-users text-xl mr-2"></i>
+            <span className="font-bold text-lg">Setup Multiplayer</span>
+          </button>
+        </Link>
       </div>
       <div className="mt-5">
         <Link to={"/game"}>

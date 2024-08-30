@@ -1,3 +1,5 @@
+// this is solo gameplay page
+
 import SidebarQuestionsLargeScreen from "../sidebar-questions-large-screen/SidebarQuestionsLargeScreen";
 import QuestionsAndOptionsOfAnswers from "../question-and-options-of-answer/QuestionsAndOptionsOfAnswers";
 
