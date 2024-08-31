@@ -19,8 +19,9 @@ const MultiplayerPageMain = () => {
   const turnOnSocket = useMultiplayer((state) => state.turnOnSocket);
   const turnOffSocket = useMultiplayer((state) => state.turnOffSocket);
 
-  turnOnUpdatingGamingData();
   checkIsEligibleToStayInThisPage();
+  turnOnUpdatingGamingData();
+
   useEffect(() => {
     turnOnSocket();
     return () => {

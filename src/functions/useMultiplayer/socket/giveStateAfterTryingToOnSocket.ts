@@ -9,7 +9,7 @@ const giveStateAfterTryingToOnSocket: giveStateAfterTryingToOnSocketType = (
   state
 ) => {
   return new Promise((resolve, reject) => {
-    const mySocket: Socket = io(SOCKET_ADDRESS);
+    const mySocket: Socket = io(SOCKET_ADDRESS, { reconnection: false });
     mySocket.on("connect", () => {
       const newState: useMultiplayerZustandStateType = {
         ...state,
