@@ -12,14 +12,15 @@ import turnOnLiveScore from "../../../hooks/multiplayer-gameplay/live-score/turn
 import turnOnUpdatingGamingData from "../../../hooks/multiplayer-gameplay/gaming-data/turnOnUpdatingGamingData";
 import RoomInfo from "../room-info/RoomInfo";
 import GameOnOffButtons from "../game-on-off-button/GameOnOffButtons";
+import checkIsEligibleToStayInThisPage from "../../../hooks/multiplayer-gameplay/check-is-eligible-to-stay-in-this-page/checkIsEligibleToStayInThisPage";
 
 const MultiplayerPageMain = () => {
   // NEW ONES--------------------------------------------------
   const turnOnSocket = useMultiplayer((state) => state.turnOnSocket);
   const turnOffSocket = useMultiplayer((state) => state.turnOffSocket);
 
-  // turnOnLiveScore();
   turnOnUpdatingGamingData();
+  checkIsEligibleToStayInThisPage();
   useEffect(() => {
     turnOnSocket();
     return () => {

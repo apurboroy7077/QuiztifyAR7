@@ -8,20 +8,29 @@ const turnOnUpdatingGamingData = () => {
   const setGameData = (data: any) => {
     updateGameData(data);
   };
+  const turnOnDataReceiverOfClient = () => {
+    socketAR7?.on("clientSideGameDataReceiver", setGameData);
+  };
+  const turnOffDataReceiverOfClient = () => {
+    socketAR7?.off("clientSideGameDataReceiver", setGameData);
+  };
+  const sendRequestToGiveGameData = () => {
+    const dataForServer = {
+      roomId: roomId,
+      timeStamp: Date.now(),
+      playerId: playerId,
+    };
+    socketAR7?.emit("signalToSendGamingData", dataForServer);
+  };
+
   const playerId = useMultiplayer((state) => state.playerId);
   useEffect(() => {
-    socketAR7?.on("clientSideGameDataReceiver", setGameData);
-
+    turnOnDataReceiverOfClient();
     const sendingRequestOfGettingDataInterval = setInterval(() => {
-      const dataForServer = {
-        roomId: roomId,
-        timeStamp: Date.now(),
-        playerId: playerId,
-      };
-      socketAR7?.emit("signalToSendGamingData", dataForServer);
+      sendRequestToGiveGameData();
     }, 1000);
     return () => {
-      socketAR7?.off("clientSideGameDataReceiver", setGameData);
+      turnOffDataReceiverOfClient();
       clearInterval(sendingRequestOfGettingDataInterval);
     };
   }, [socketAR7]);
