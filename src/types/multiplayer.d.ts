@@ -9,4 +9,5 @@ type multiplayerGameDataReceivedFromServer = {
   currentQuestionData: multiplayerSingleQuestionDataType;
   allQuestions: multiplayerSingleQuestionDataType[];
   usersData: multiplayerSingleUserDataType[];
+  gameRunningStatus?: "RUNNING" | "NOT_RUNNING";
 };

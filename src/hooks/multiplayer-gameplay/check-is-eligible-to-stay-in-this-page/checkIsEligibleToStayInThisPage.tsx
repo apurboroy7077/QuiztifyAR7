@@ -20,7 +20,6 @@ const checkIsEligibleToStayInThisPage = () => {
       navigate("/setup-multiplayer");
     }, 2000);
   };
-
   if (!isEligibleToJoinRoom) {
     functionToActivateWhenUserIsNotEligibleToJoinRoom();
   }
