@@ -18,6 +18,7 @@ type useMultiplayerZustandStateType = {
   setPlayerId: (playerId: string) => void;
   roomId: string;
   roomName: string;
+  countDownTimerTime: undefined | number;
   gameRunningStatus: "RUNNING" | "NOT_RUNNING";
   currentQuestion: multiplayerSingleQuestionDataType | null;
   choosenQuestions: multiplayerSingleQuestionDataType[];

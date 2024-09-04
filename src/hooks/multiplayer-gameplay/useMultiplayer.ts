@@ -11,6 +11,7 @@ const useMultiplayer = create<useMultiplayerZustandStateType>((set, get) => ({
   gameRunningStatus: "NOT_RUNNING",
   currentQuestion: null,
   choosenQuestions: [],
+  countDownTimerTime: undefined,
   usersInfo: [
     { name: "Apurbo Roy", id: "ar7", score: 0 },
     { name: "Liam", id: "liam10", score: 10 },
@@ -55,14 +56,17 @@ const useMultiplayer = create<useMultiplayerZustandStateType>((set, get) => ({
   },
   updateGameData: (data) => {
     if (data) {
+      console.log(data);
       const { currentQuestionData, allQuestions, usersData } = data;
       const { gameRunningStatus = "NOT_RUNNING" } = data;
+      const { countDownTimerTime = undefined } = data;
       set((state) => ({
         ...state,
         currentQuestion: currentQuestionData,
         choosenQuestions: allQuestions,
         usersInfo: usersData,
         gameRunningStatus: gameRunningStatus,
+        countDownTimerTime: countDownTimerTime,
       }));
     } else {
       console.log("No Data Exists Of this Room");

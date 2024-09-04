@@ -10,4 +10,5 @@ type multiplayerGameDataReceivedFromServer = {
   allQuestions: multiplayerSingleQuestionDataType[];
   usersData: multiplayerSingleUserDataType[];
   gameRunningStatus?: "RUNNING" | "NOT_RUNNING";
+  countDownTimerTime?: number;
 };
