@@ -15,6 +15,9 @@ const MultiplayerSingleOption = (props: propsType) => {
   const [answerOfUser, setAnswerOfUser] = useState(
     "NOT_ANSWERED" as answerOfUserStatus
   );
+  const socketAR7 = useMultiplayer((state) => state.socket);
+  const roomId = useMultiplayer((state) => state.roomId);
+  const playerId = useMultiplayer((state) => state.playerId);
   const currentQuestionData = useMultiplayer((state) => state.currentQuestion);
   const moveToNextQuestion = useQuestions2((state) => state.moveToNextQuestion);
   const currentScore = useScoreInSoloGameplay((state) => state.currentScore);
@@ -32,11 +35,15 @@ const MultiplayerSingleOption = (props: propsType) => {
     (state) => state.setCurrentAnswerSubmitStatus
   );
   const increaseScore = useScoreInSoloGameplay((state) => state.increaseScore);
+  const sendRequestToIncreaseTheScoreOfThePlayerInServer = () => {
+    const dataForServer = { roomId, playerId };
+    socketAR7.emit("increaseScoreOfPlayer", dataForServer);
+  };
   const submitAnswer = () => {
     setCurrentAnswerSubmitStatus("SUBMITTED");
     if (option === currentQuestionData?.correctAnswer) {
       setAnswerOfUser("CORRECT_ANSWER");
-      increaseScore();
+      sendRequestToIncreaseTheScoreOfThePlayerInServer();
     } else {
       setAnswerOfUser("WRONG_ANSWER");
     }
@@ -48,6 +55,7 @@ const MultiplayerSingleOption = (props: propsType) => {
   const questionOverStatus = useQuestions2((state) => state.questionOverStatus);
   const resetState = useQuestions2((state) => state.reset);
   const setQuestions = useQuestions2((state) => state.setQuestions);
+
   useEffect(() => {
     if (questionOverStatus === "QUESTION_OVER") {
       popupQuestionOverMessage();
