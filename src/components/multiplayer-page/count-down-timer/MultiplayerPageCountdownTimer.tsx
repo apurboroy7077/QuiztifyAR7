@@ -1,4 +1,3 @@
-import React from "react";
 import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
 
 const MultiplayerPageCountdownTimer = () => {

@@ -11,6 +11,11 @@ type multiplayerSingleQuestionDataType = {
   correctAnswer: string;
   imageSrc?: string | undefined;
 };
+type currentAnswerSubmitStatusType =
+  | "NOT_SUBMITTED"
+  | "SUBMITTED"
+  | "SUBMITTED_RIGHT_ANSWER"
+  | "SUBMITTED_WRONG_ANSWER";
 type useMultiplayerZustandStateType = {
   playerName: string;
   playerId: string;
@@ -20,6 +25,12 @@ type useMultiplayerZustandStateType = {
   roomName: string;
   countDownTimerTime: undefined | number;
   gameRunningStatus: "RUNNING" | "NOT_RUNNING";
+  currentAnswerSubmitStatus: currentAnswerSubmitStatusType;
+  setCurrentAnswerSubmitStatusType: (
+    submissionStatus: currentAnswerSubmitStatusType
+  ) => void;
+  submitCurrentQuestion: (option: string) => void;
+  submitAnswerOfCurrentQuestion2: (answer: string) => void;
   currentQuestion: multiplayerSingleQuestionDataType | null;
   choosenQuestions: multiplayerSingleQuestionDataType[];
   usersInfo: multiplayerSingleUserInfoType[];

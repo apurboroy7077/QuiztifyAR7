@@ -1,5 +1,5 @@
 import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
-import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
+
 import MultiplayerPageCountdownTimer from "../count-down-timer/MultiplayerPageCountdownTimer";
 import OptionsOfAnswer from "../options-of-answer/MultiplayerOptionsOfAnswer";
 

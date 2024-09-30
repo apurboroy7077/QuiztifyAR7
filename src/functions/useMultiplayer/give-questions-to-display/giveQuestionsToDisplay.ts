@@ -6,8 +6,7 @@ type giveQuestionsToDisplayType = (
 
 const giveQuestionsToDisplay: giveQuestionsToDisplayType = (
   currentQuestion: multiplayerSingleQuestionDataType | null,
-  questions: multiplayerSingleQuestionDataType[],
-  displayingQuestions: multiplayerSingleQuestionDataType[]
+  questions: multiplayerSingleQuestionDataType[]
 ) => {
   let finalQuestionToDisplay = [] as multiplayerSingleQuestionDataType[];
   if (currentQuestion) {

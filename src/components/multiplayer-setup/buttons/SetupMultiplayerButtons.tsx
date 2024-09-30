@@ -1,4 +1,3 @@
-import React from "react";
 import useSetupMultiplayer from "../../../hooks/setup-multiplayer/useSetupMultiplayer";
 
 const SetupMultiplayerButtons = () => {

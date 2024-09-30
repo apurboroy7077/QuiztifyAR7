@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useMultiplayer from "../useMultiplayer";
 
 const turnOnUpdatingGamingData = () => {
@@ -20,7 +20,7 @@ const turnOnUpdatingGamingData = () => {
       timeStamp: Date.now(),
       playerId: playerId,
     };
-    socketAR7?.emit("signalToSendGamingData", dataForServer);
+    socketAR7?.emit("roomDataRequest", dataForServer);
   };
 
   const playerId = useMultiplayer((state) => state.playerId);
@@ -28,6 +28,7 @@ const turnOnUpdatingGamingData = () => {
     turnOnDataReceiverOfClient();
     const sendingRequestOfGettingDataInterval = setInterval(() => {
       sendRequestToGiveGameData();
+      console.log("hi");
     }, 2000);
     return () => {
       turnOffDataReceiverOfClient();

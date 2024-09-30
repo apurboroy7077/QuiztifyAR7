@@ -1,5 +1,3 @@
-import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
-import giveQuestionsAccordingToIndex from "../../../functions/utils/giveQuestionsAccordingToIndex";
 import MultiplayerSidebarQuestionSingleList from "./MultiplayerSidebarQuestionSingleList";
 import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
 import { useEffect, useState } from "react";

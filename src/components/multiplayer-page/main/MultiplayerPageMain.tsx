@@ -1,33 +1,29 @@
 // this is solo gameplay page
 
-import { useEffect } from "react";
-
-import useQuestions2 from "../../../hooks/solo-gameplay/useQuestions2";
-
 import MultiplayerSidebarQuestionsLargeScreen from "../sidebar-questions-large-screen/MultiplayerSidebarQuestionsLargeScreen";
 import MultiplayerGamePlayScoreboard from "../score/MultiplayerGamePlayScoreboard";
 import MultiplayerQuestionsAndOptionsOfAnswers from "../question-and-options-of-answer/MultiplayerQuestionsAndOptionsOfAnswers";
-import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
-import turnOnLiveScore from "../../../hooks/multiplayer-gameplay/live-score/turnOnLiveScore";
-import turnOnUpdatingGamingData from "../../../hooks/multiplayer-gameplay/gaming-data/turnOnUpdatingGamingData";
 import RoomInfo from "../room-info/RoomInfo";
 import GameOnOffButtons from "../game-on-off-button/GameOnOffButtons";
-import checkIsEligibleToStayInThisPage from "../../../hooks/multiplayer-gameplay/check-is-eligible-to-stay-in-this-page/checkIsEligibleToStayInThisPage";
+
+import mainCustomHookOfMultiplayerPage from "../../../hooks/multiplayer-gameplay/main-custom-hook/mainCustomHookOfMultiplayerPage";
 
 const MultiplayerPageMain = () => {
+  mainCustomHookOfMultiplayerPage();
+
   // NEW ONES--------------------------------------------------
-  const turnOnSocket = useMultiplayer((state) => state.turnOnSocket);
-  const turnOffSocket = useMultiplayer((state) => state.turnOffSocket);
+  // const turnOnSocket = useMultiplayer((state) => state.turnOnSocket);
+  // const turnOffSocket = useMultiplayer((state) => state.turnOffSocket);
 
-  checkIsEligibleToStayInThisPage();
-  turnOnUpdatingGamingData();
+  // checkIsEligibleToStayInThisPage();
+  // turnOnUpdatingGamingData();
 
-  useEffect(() => {
-    turnOnSocket();
-    return () => {
-      turnOffSocket();
-    };
-  }, []);
+  // useEffect(() => {
+  //   turnOnSocket();
+  //   return () => {
+  //     turnOffSocket();
+  //   };
+  // }, []);
 
   return (
     <main>

@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { NORMAL_SERVER_ADDRESS } from "../../../data/routes-addresses/addresses";
 import axios from "axios";
 import { successMessageAR7 } from "../../../functions/utils/sweetAlertMessage";
-import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
+
+import { getDataFromLocalStorage } from "../../../functions/localstorage/get-data-from-localstorage/getDataFromLocalStorage";
+import { saveDataToLocalStorage } from "../../../functions/localstorage/save-data-to-local-storage/saveDataToLocalStorage";
 
 type joinRequestStatusType =
   | "NOT_STARTED"
@@ -16,11 +18,6 @@ const JoinRoom = () => {
   const [joinRequestStatus, setJoinRequestStatus] = useState(
     "NOT_STARTED" as joinRequestStatusType
   );
-
-  const setPlayerName = useMultiplayer((state) => state.setPlayerName);
-  const setPlayerId = useMultiplayer((state) => state.setPlayerId);
-  const setRoomId = useMultiplayer((state) => state.setRoomId);
-  const setRoomName = useMultiplayer((state) => state.setRoomName);
 
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,11 +36,11 @@ const JoinRoom = () => {
           console.log(response);
           const { playerId, playerName, roomId, roomName } = response.data;
           console.log(playerId, playerName, roomId, roomName);
-          setPlayerName(playerName);
-          setPlayerId(playerId);
-          setRoomName(roomName);
-          setRoomId(roomId);
-
+          const localStorageData: any = getDataFromLocalStorage();
+          localStorageData.roomId = roomId;
+          localStorageData.playerId = playerId;
+          localStorageData.roomName = roomName;
+          saveDataToLocalStorage(localStorageData);
           setJoinRequestStatus("JOIN_SUCCESS");
           successMessageAR7("Joined Successful", "Redirecting to Game...");
           setTimeout(() => {

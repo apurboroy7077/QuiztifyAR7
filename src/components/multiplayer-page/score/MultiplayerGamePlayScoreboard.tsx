@@ -1,5 +1,5 @@
 import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
-import useScoreInSoloGameplay from "../../../hooks/solo-gameplay/useScore/useScore";
+
 import ar7Id from "../../../utils/unique-id/ar7Id";
 import SingleUserListInMultiplayerScoreboard from "./SingleUserListInMultiplayerScoreboard";
 
@@ -14,14 +14,21 @@ const MultiplayerGamePlayScoreboard = () => {
       <button onClick={testAddUser} className="active:scale-[0.9]">
         Add User
       </button>
-      {usersInfo.map((data) => {
-        return (
-          <SingleUserListInMultiplayerScoreboard
-            key={ar7Id()}
-            userData={data}
-          />
-        );
-      })}
+
+      {usersInfo.length > 0 &&
+        usersInfo.map((data) => {
+          return (
+            <SingleUserListInMultiplayerScoreboard
+              key={ar7Id()}
+              userData={data}
+            />
+          );
+        })}
+      {usersInfo.length < 1 && (
+        <div>
+          Loading<i className="fa-solid fa-spinner fa-spin ml-2"></i>
+        </div>
+      )}
     </ul>
   );
 };

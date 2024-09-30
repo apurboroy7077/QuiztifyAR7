@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  MULTIPLAYER_GAME_PAGE_ADDRESS,
-  NORMAL_SERVER_ADDRESS,
-} from "../../../data/routes-addresses/addresses";
+import { NORMAL_SERVER_ADDRESS } from "../../../data/routes-addresses/addresses";
 import axios from "axios";
 import { successMessageAR7 } from "../../../functions/utils/sweetAlertMessage";
-import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
-import giveRandomId from "../../../functions/utils/giveRandomId";
+
+import { getDataFromLocalStorage } from "../../../functions/localstorage/get-data-from-localstorage/getDataFromLocalStorage";
+import { saveDataToLocalStorage } from "../../../functions/localstorage/save-data-to-local-storage/saveDataToLocalStorage";
 type creationRequestStatusType =
   | "NOT_STARTED"
   | "CREATING"
@@ -18,9 +16,7 @@ const CreateRoom = () => {
   const [creationRequestStatus, setCreationRequestStatus] = useState(
     "NOT_STARTED" as creationRequestStatusType
   );
-  const setRoomName = useMultiplayer((state) => state.setRoomName);
-  const setRoomId = useMultiplayer((state) => state.setRoomId);
-  const setPlayerId = useMultiplayer((state) => state.setPlayerId);
+
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -41,10 +37,11 @@ const CreateRoom = () => {
           const newRoomId = response.data.roomId;
           const newRoomName = response.data.roomName;
           const playerIdOfTheRoomCreator = response.data.playerId;
-
-          setPlayerId(playerIdOfTheRoomCreator);
-          setRoomId(newRoomId);
-          setRoomName(newRoomName);
+          const localStorageData: any = getDataFromLocalStorage();
+          localStorageData.roomId = newRoomId;
+          localStorageData.playerId = playerIdOfTheRoomCreator;
+          localStorageData.roomName = newRoomName;
+          saveDataToLocalStorage(localStorageData);
           const serverMessage = response.data.message;
           setCreationRequestStatus("CREATION_SUCCESS");
           successMessageAR7(serverMessage, "Redirecting to Game...");
