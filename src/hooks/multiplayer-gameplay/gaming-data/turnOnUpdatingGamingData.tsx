@@ -28,7 +28,6 @@ const turnOnUpdatingGamingData = () => {
     turnOnDataReceiverOfClient();
     const sendingRequestOfGettingDataInterval = setInterval(() => {
       sendRequestToGiveGameData();
-      console.log("hi");
     }, 2000);
     return () => {
       turnOffDataReceiverOfClient();

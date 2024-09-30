@@ -11,20 +11,6 @@ import mainCustomHookOfMultiplayerPage from "../../../hooks/multiplayer-gameplay
 const MultiplayerPageMain = () => {
   mainCustomHookOfMultiplayerPage();
 
-  // NEW ONES--------------------------------------------------
-  // const turnOnSocket = useMultiplayer((state) => state.turnOnSocket);
-  // const turnOffSocket = useMultiplayer((state) => state.turnOffSocket);
-
-  // checkIsEligibleToStayInThisPage();
-  // turnOnUpdatingGamingData();
-
-  // useEffect(() => {
-  //   turnOnSocket();
-  //   return () => {
-  //     turnOffSocket();
-  //   };
-  // }, []);
-
   return (
     <main>
       <section>
