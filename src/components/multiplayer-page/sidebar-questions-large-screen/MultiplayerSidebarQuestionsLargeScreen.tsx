@@ -2,6 +2,7 @@ import MultiplayerSidebarQuestionSingleList from "./MultiplayerSidebarQuestionSi
 import useMultiplayer from "../../../hooks/multiplayer-gameplay/useMultiplayer";
 import { useEffect, useState } from "react";
 import giveQuestionsToDisplay from "../../../functions/useMultiplayer/give-questions-to-display/giveQuestionsToDisplay";
+import ar7Id from "../../../utils/unique-id/ar7Id";
 
 const MultiplayerSidebarQuestionsLargeScreen = () => {
   const currentQuestion = useMultiplayer((state) => state.currentQuestion);
@@ -22,7 +23,12 @@ const MultiplayerSidebarQuestionsLargeScreen = () => {
     <>
       <ul className="flex flex-col gap-5">
         {questionsToDisplay?.map((questionData: any) => {
-          return <MultiplayerSidebarQuestionSingleList data={questionData} />;
+          return (
+            <MultiplayerSidebarQuestionSingleList
+              key={ar7Id()}
+              data={questionData}
+            />
+          );
         })}
       </ul>
     </>

@@ -10,7 +10,7 @@ const MultiplayerSingleOption = (props: propsType) => {
   const { submitAnswer, markStatus } = singleOptionCustomHook(option);
 
   // Memoize the content to re-render only when markStatus changes
-  const memoizedOptionContent = useMemo(() => {
+  const memorizedOptionContent = useMemo(() => {
     return (
       <li>
         <div
@@ -43,7 +43,7 @@ const MultiplayerSingleOption = (props: propsType) => {
     );
   }, [markStatus]); // Memoize the JSX based on `markStatus`, `submitAnswer`, and `option`
 
-  return memoizedOptionContent;
+  return memorizedOptionContent;
 };
 
 export default MultiplayerSingleOption;

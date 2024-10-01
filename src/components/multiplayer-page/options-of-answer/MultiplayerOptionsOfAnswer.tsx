@@ -8,6 +8,7 @@ const MultiplayerOptionsOfAnswer = () => {
   const currentSingleQuestion = useMultiplayer(
     (state) => state.currentQuestion
   );
+
   const code = useMemo(() => {
     return (
       <ul className="mt-10 lg:mt-16 grid gap-4 lg:grid-cols-2">

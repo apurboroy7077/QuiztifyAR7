@@ -35,9 +35,7 @@ const checkIsEligibleToStayInThisPage = () => {
   const dataForServer = { roomId };
   axios
     .post(`${NORMAL_SERVER_ADDRESS}/check-room`, dataForServer)
-    .then((response) => {
-      console.log(response);
-    })
+    .then(() => {})
     .catch((error) => {
       failureMessageAR7("This Room Expired", "Please Create a Room Again");
       setTimeout(() => {

@@ -76,6 +76,11 @@ const singleOptionCustomHook = (option: string) => {
       markStatus = "WRONG_ANSWER";
     }
   };
+  // const checkIfThisQuestionAlreadyAskedOrNot = () => {
+  //   const savedData = getDataFromLocalStorage();
+  //   const answeredQuestions = savedData.answeredQuestions;
+  //   console.log(answeredQuestions);
+  // };
 
   checkFunction();
 

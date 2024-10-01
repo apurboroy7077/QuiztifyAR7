@@ -47,7 +47,7 @@ const SingleUserListInMultiplayerScoreboard = (props: propsType) => {
     }
   };
   initializePlayerScore();
-  console.log(markStatus, finalName, playerScore);
+
   const code = useMemo(() => {
     return (
       <li>

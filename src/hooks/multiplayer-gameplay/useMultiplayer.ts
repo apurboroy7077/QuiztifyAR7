@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import giveStateAfterAddingNewUser from "../../functions/useMultiplayer/give-state-after-adding-new-user/giveStateAfterAddingNewUser";
 import giveStateAfterTryingToOnSocket from "../../functions/useMultiplayer/socket/giveStateAfterTryingToOnSocket";
+import { getDataFromLocalStorage } from "../../functions/localstorage/get-data-from-localstorage/getDataFromLocalStorage";
 
 const useMultiplayer = create<useMultiplayerZustandStateType>((set, get) => ({
   playerName: "",
@@ -80,14 +81,37 @@ const useMultiplayer = create<useMultiplayerZustandStateType>((set, get) => ({
       const { currentQuestionData, allQuestions, usersData } = data;
       const { gameRunningStatus = "NOT_RUNNING" } = data;
       const { countDownTimerTime = undefined } = data;
-      set((state) => ({
-        ...state,
-        currentQuestion: currentQuestionData,
-        choosenQuestions: allQuestions,
-        usersInfo: usersData,
-        gameRunningStatus: gameRunningStatus,
-        countDownTimerTime: countDownTimerTime,
-      }));
+      set((state) => {
+        // let currentAnswerSubmitStatus = state.currentAnswerSubmitStatus;
+        const savedData = getDataFromLocalStorage();
+        const { roomId, answeredQuestion } = savedData;
+        let isCurrentQuestionAlreadyAnswered = false;
+        let answerSubmitStatus = state.currentAnswerSubmitStatus;
+        for (let i = 0; i < answeredQuestion.length; i++) {
+          const singleAnsweredQuestionData = answeredQuestion[i];
+          const askedQuestion = singleAnsweredQuestionData.question;
+          const roomIdOfAskedQuestion = singleAnsweredQuestionData.roomId;
+
+          if (
+            currentQuestionData.question === askedQuestion &&
+            roomIdOfAskedQuestion === roomId
+          ) {
+            isCurrentQuestionAlreadyAnswered = true;
+          }
+        }
+        if (!isCurrentQuestionAlreadyAnswered) {
+          answerSubmitStatus = "NOT_SUBMITTED";
+        }
+        return {
+          ...state,
+          currentQuestion: currentQuestionData,
+          choosenQuestions: allQuestions,
+          usersInfo: usersData,
+          gameRunningStatus: gameRunningStatus,
+          countDownTimerTime: countDownTimerTime,
+          currentAnswerSubmitStatus: answerSubmitStatus,
+        };
+      });
     } else {
       console.log("No Data Exists Of this Room");
     }

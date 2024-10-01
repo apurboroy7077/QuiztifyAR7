@@ -31,7 +31,6 @@ const MultiplayerGamePlayScoreboard = () => {
       <button onClick={testAddUser} className="active:scale-[0.9]">
         Add User
       </button>
-
       {usersList}
       {usersInfo.length < 1 && (
         <div>
