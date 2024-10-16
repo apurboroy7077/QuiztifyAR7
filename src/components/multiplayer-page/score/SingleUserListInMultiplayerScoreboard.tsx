@@ -67,7 +67,7 @@ const SingleUserListInMultiplayerScoreboard = (props: propsType) => {
           `}
         >
           <img
-            src="/images/2/bill-gates.jpg"
+            src="/images/characters-icon/tom.png"
             alt=""
             className="w-full h-full object-cover object-center"
           />
