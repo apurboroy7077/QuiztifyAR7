@@ -10,6 +10,7 @@ const MultiplayerGamePlayScoreboard = () => {
   const testAddUser = () => {
     addUser({ name: "Haaland", id: ar7Id(), score: 0 });
   };
+
   const usersList = useMemo(() => {
     return (
       <>

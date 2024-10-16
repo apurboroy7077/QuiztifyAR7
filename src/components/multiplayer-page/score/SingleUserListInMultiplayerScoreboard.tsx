@@ -6,7 +6,7 @@ type propsType = {
 };
 type markStatus = "INITIAL" | "CORRECT_ANSWER" | "WRONG_ANSWER";
 const SingleUserListInMultiplayerScoreboard = (props: propsType) => {
-  const { name } = props.userData;
+  const { name, score } = props.userData;
   const userData: any = props.userData;
   const currentQuestionData = useMultiplayer((state) => state.currentQuestion);
   let dataOfLastQuestionAnswered: any;
@@ -72,7 +72,7 @@ const SingleUserListInMultiplayerScoreboard = (props: propsType) => {
             className="w-full h-full object-cover object-center"
           />
           <div className="text-xs absolute bottom-0 right-0 bg-[black] bg-opacity-[0.6] px-1 lg:px-3 lg:py-1 w-full text-center">
-            {finalName}: {playerScore}
+            {finalName}: {score}
           </div>
         </div>
       </li>

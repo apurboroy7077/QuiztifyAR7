@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Gamepage from "../pages/gamepage/Gamepage";
 import MultiplayerPage from "../pages/multiplayer-page/MultiplayerPage";
 import SetupMultiplayerPage from "../pages/setup-multiplayer-page/SetupMultiplayerPage";
+import GameOverPage from "../pages/gameover/GameOverPage";
 
 const Homepage = lazy(() => import("../pages/homepage/Homepage"));
 const Testpage = lazy(() => import("../pages/testpage/Testpage"));
@@ -20,6 +21,7 @@ const RouterAR7 = () => {
               path="/setup-multiplayer"
               element={<SetupMultiplayerPage />}
             />
+            <Route path="/game-over" element={<GameOverPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

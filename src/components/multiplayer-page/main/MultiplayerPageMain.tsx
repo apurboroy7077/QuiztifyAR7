@@ -4,7 +4,7 @@ import MultiplayerSidebarQuestionsLargeScreen from "../sidebar-questions-large-s
 import MultiplayerGamePlayScoreboard from "../score/MultiplayerGamePlayScoreboard";
 import MultiplayerQuestionsAndOptionsOfAnswers from "../question-and-options-of-answer/MultiplayerQuestionsAndOptionsOfAnswers";
 import RoomInfo from "../room-info/RoomInfo";
-import GameOnOffButtons from "../game-on-off-button/GameOnOffButtons";
+// import GameOnOffButtons from "../game-on-off-button/GameOnOffButtons";
 
 import mainCustomHookOfMultiplayerPage from "../../../hooks/multiplayer-gameplay/main-custom-hook/mainCustomHookOfMultiplayerPage";
 
@@ -20,7 +20,7 @@ const MultiplayerPageMain = () => {
           </div>
           <div className="lg:w-[65%]">
             <RoomInfo />
-            <GameOnOffButtons />
+            {/* <GameOnOffButtons /> */}
             <MultiplayerGamePlayScoreboard />
             <MultiplayerQuestionsAndOptionsOfAnswers />
           </div>

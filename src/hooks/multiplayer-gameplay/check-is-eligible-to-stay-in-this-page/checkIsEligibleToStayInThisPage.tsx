@@ -52,6 +52,11 @@ const checkIsEligibleToStayInThisPage = () => {
   setRoomName(roomName);
   setRoomId(roomId);
   setPlayerId(playerId);
+
+  const gameRunningStatus = useMultiplayer((state) => state.gameRunningStatus);
+  if (gameRunningStatus === "GAME_OVER") {
+    navigate("/setup-multiplayer");
+  }
 };
 
 export default checkIsEligibleToStayInThisPage;

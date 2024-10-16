@@ -24,7 +24,7 @@ type useMultiplayerZustandStateType = {
   roomId: string;
   roomName: string;
   countDownTimerTime: undefined | number;
-  gameRunningStatus: "RUNNING" | "NOT_RUNNING";
+  gameRunningStatus: "RUNNING" | "NOT_RUNNING" | "GAME_OVER";
   currentAnswerSubmitStatus: currentAnswerSubmitStatusType;
   setCurrentAnswerSubmitStatusType: (
     submissionStatus: currentAnswerSubmitStatusType
@@ -41,4 +41,5 @@ type useMultiplayerZustandStateType = {
   turnOnSocket: () => void;
   turnOffSocket: () => void;
   updateGameData: (data: multiplayerGameDataReceivedFromServer) => void;
+  resetState: () => void;
 };

@@ -81,13 +81,14 @@ const useMultiplayer = create<useMultiplayerZustandStateType>((set, get) => ({
       const { currentQuestionData, allQuestions, usersData } = data;
       const { gameRunningStatus = "NOT_RUNNING" } = data;
       const { countDownTimerTime = undefined } = data;
+
       set((state) => {
         // let currentAnswerSubmitStatus = state.currentAnswerSubmitStatus;
         const savedData = getDataFromLocalStorage();
         const { roomId, answeredQuestion } = savedData;
         let isCurrentQuestionAlreadyAnswered = false;
         let answerSubmitStatus = state.currentAnswerSubmitStatus;
-        for (let i = 0; i < answeredQuestion.length; i++) {
+        for (let i = 0; i < answeredQuestion?.length; i++) {
           const singleAnsweredQuestionData = answeredQuestion[i];
           const askedQuestion = singleAnsweredQuestionData.question;
           const roomIdOfAskedQuestion = singleAnsweredQuestionData.roomId;
@@ -115,6 +116,22 @@ const useMultiplayer = create<useMultiplayerZustandStateType>((set, get) => ({
     } else {
       console.log("No Data Exists Of this Room");
     }
+  },
+  resetState: () => {
+    set((state) => ({
+      ...state,
+      playerName: "",
+      playerId: "",
+      roomId: "",
+      roomName: "",
+      gameRunningStatus: "NOT_RUNNING",
+      currentQuestion: null,
+      choosenQuestions: [],
+      countDownTimerTime: undefined,
+      usersInfo: [],
+      socket: null,
+      currentAnswerSubmitStatus: "NOT_SUBMITTED",
+    }));
   },
 }));
 
