@@ -2,8 +2,10 @@ export const MULTIPLAYER_GAME_PAGE_ADDRESS = "/multiplayer-game";
 
 // LOCALHOST ADDRESS
 //
-export const NORMAL_SERVER_ADDRESS = "http://localhost:5006";
-export const SOCKET_ADDRESS = "http://localhost:5006";
+export const NORMAL_SERVER_ADDRESS =
+  "https://quiztifyar7-backend-2-express-socket.onrender.com";
+export const SOCKET_ADDRESS =
+  "https://quiztifyar7-backend-2-express-socket.onrender.com";
 //
 //
 //
